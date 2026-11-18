@@ -1,0 +1,140 @@
+/* --- Main Footer Container --- */
+.footer {
+    background-color: #f8f9fa; /* Matches the light, off-white background from the image */
+    padding: 80px 0 40px 0;
+    color: #6c757d; /* A soft grey for the text */
+    font-size: 16px;
+    border-top: 1px solid #e9ecef; /* A very faint top border */
+  }
+  
+  /* Container to keep content centered */
+  .footer .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  /* --- Footer Logo and Description --- */
+  .footer img {
+    max-width: 120px; /* Adjust logo size if needed */
+  }
+  
+  .footer .mt-20 {
+    margin-top: 20px;
+  }
+  
+  .footer .mb-20 {
+    margin-bottom: 20px;
+  }
+  
+  /* --- Footer Link Columns --- */
+  .footer h6 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #212529; /* Darker color for headings */
+    margin-bottom: 0;
+  }
+  
+  .footer .menu-footer {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer .menu-footer.mt-40 {
+    margin-top: 30px; /* Spacing between heading and links */
+  }
+  
+  .footer .menu-footer li {
+    margin-bottom: 12px;
+  }
+  
+  .footer .menu-footer li a {
+    color: #6c757d;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .footer .menu-footer li a:hover {
+    color: #007bff; /* A nice blue for hover effect */
+  }
+  
+  
+  /* --- Footer Bottom Section (Copyright & Socials) --- */
+  .footer .footer-bottom {
+    border-top: 1px solid #dee2e6; /* The separator line */
+    padding-top: 30px;
+  }
+  
+  .footer .footer-bottom.mt-50 {
+    margin-top: 50px;
+  }
+  
+  .footer .footer-bottom a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  /* --- Social Media Icons --- */
+  .footer .footer-social {
+    display: flex;
+    gap: 15px; /* Space between icons */
+    justify-content: flex-start;
+  }
+  
+  /* This is a general style for the icons.
+     You would need a library like FontAwesome or custom SVGs for the actual icons.
+     This styling makes them look like the circles in the image. */
+  .footer .icon-socials {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ced4da;
+    border-radius: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  
+  .footer .icon-socials:hover {
+    background-color: #007bff;
+    border-color: #007bff;
+    /* Add filter to change icon color to white on hover */
+    /* filter: brightness(0) invert(1); */
+  }
+  
+  /* You would need to set the actual icon images like this */
+  /*
+  .footer .icon-facebook { background-image: url('path-to-facebook.svg'); }
+  .footer .icon-twitter { background-image: url('path-to-twitter.svg'); }
+  .footer .icon-instagram { background-image: url('path-to-instagram.svg'); }
+  .footer .icon-linkedin { background-image: url('path-to-linkedin.svg'); }
+  */
+  
+  /* --- Utility and Responsive Classes --- */
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  
+  .col-md-2, .col-md-4, .col-md-6, .col-sm-12, .col-xs-6 {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    box-sizing: border-box;
+  }
+  
+  .text-md-end { text-align: left; }
+  
+  /* Responsive adjustments */
+  @media (min-width: 768px) {
+    .col-md-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+    .col-md-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+    .col-md-6 { flex: 0 0 50%; max-width: 50%; }
+    .text-md-end { text-align: right; }
+    .footer .footer-social { justify-content: flex-end; }
+  }
+  
+  

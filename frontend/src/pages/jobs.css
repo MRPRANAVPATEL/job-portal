@@ -1,0 +1,107 @@
+/* src/pages/jobs.css */
+
+/* --- General Page Styling --- */
+.jobs-page {
+  /* Set the background to white as requested */
+  background-color: #ffffff;
+  /* Add padding for spacing from the page edges */
+  padding: 20px 40px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  min-height: 80vh; /* Ensures the page takes up most of the viewport height */
+}
+
+.jobs-page h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+}
+
+/* --- Job List Grid Container --- */
+.jobs-list {
+  /* ✅ Establishes the 3-column grid layout */
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 25px; /* Spacing between the job cards */
+}
+
+/* --- Individual Job Card Styling --- */
+.job-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px; /* Softer, rounded corners */
+  padding: 20px;
+  /* Subtle shadow to make cards "pop" */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Add a hover effect for interactivity */
+.job-card:hover {
+  transform: translateY(-5px); /* Lifts the card slightly */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.job-card h3 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  color: #0056b3; /* A nice blue for the job title */
+}
+
+.job-card p {
+  margin: 5px 0;
+  color: #555;
+  line-height: 1.6;
+  flex-grow: 1; /* Helps align content if cards have different heights */
+}
+
+.job-card p strong {
+  color: #333; /* Make the label text slightly darker */
+}
+
+/* --- Pagination Controls --- */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  padding: 10px;
+}
+
+.pagination button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.pagination button:hover {
+  background-color: #0056b3;
+}
+
+/* Style for the disabled state of buttons */
+.pagination button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  margin: 0 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #555;
+}
+
+
+.job-card {box-sizing:border-box; flex:0 1 calc((100% - 50px)/3);min-width:0;overflow-wrap:anywhere}
+@media(max-width:1200px){.jobs-page{padding-inline:28px}}
+@media(max-width:1024px){.job-card{flex-basis:calc((100% - 25px)/2)}}
+@media(max-width:768px){.job-card{flex-basis:100%}.jobs-page{padding:20px}}
+@media(max-width:480px){.jobs-page{padding:14px}.job-card{padding:16px}}

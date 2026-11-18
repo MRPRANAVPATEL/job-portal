@@ -1,0 +1,149 @@
+/* --- Import a clean, professional font --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* --- General Page Styles --- */
+.company-register-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f7f9; /* A soft, professional background color */
+  padding: 50px 20px;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+/* --- Logo Styling --- */
+.company-register-logo {
+  margin-bottom: 2rem;
+  height: 60px;
+}
+
+/* --- Form Card Styling --- */
+.company-register-card {
+  background: #ffffff;
+  padding: 2.5rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 550px;
+  text-align: center;
+}
+
+/* --- Typography inside the card --- */
+.company-register-card h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.5rem 0;
+}
+
+.company-register-card p {
+  font-size: 1rem;
+  color: #64748b;
+  margin-bottom: 2rem;
+}
+
+/* --- The Form Itself --- */
+.company-register-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.company-register-form label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.5rem;
+}
+
+/* Add margin-top to all labels except the first one for spacing */
+.company-register-form label:not(:first-child) {
+  margin-top: 1.2rem;
+}
+
+/* --- Input and Textarea Fields --- */
+.company-register-form input,
+.company-register-form textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #334155;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+.company-register-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.company-register-form input::placeholder,
+.company-register-form textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* --- Focus State for Fields --- */
+.company-register-form input:focus,
+.company-register-form textarea:focus {
+  outline: none;
+  border-color: #4f46e5; /* A strong accent color */
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+/* --- Submit Button --- */
+.company-register-form button[type="submit"] {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 2rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #4f46e5;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.company-register-form button[type="submit"]:hover:not(:disabled) {
+  background-color: #4338ca; /* A slightly darker shade on hover */
+  transform: translateY(-2px);
+}
+
+.company-register-form button[type="submit"]:disabled {
+  background-color: #a5b4fc;
+  cursor: not-allowed;
+}
+
+/* --- Error Message Styling --- */
+.error {
+  color: #ef4444; /* A clear, accessible red */
+  font-size: 0.875rem;
+  margin-top: 0.4rem;
+  font-weight: 500;
+}
+
+/* --- "Already registered?" Link --- */
+.signin-text {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.signin-text a {
+  color: #4f46e5;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.signin-text a:hover {
+  text-decoration: underline;
+  color: #4338ca;
+}

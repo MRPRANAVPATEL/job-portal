@@ -1,0 +1,153 @@
+/* --- Import the consistent professional font --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* --- General Page Styles --- */
+.register-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f7f9;
+  padding: 50px 20px;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+  color: black;
+}
+
+/* --- Logo Styling --- */
+.register-logo {
+  margin-bottom: 2rem;
+  height: 60px;
+}
+
+/* --- Register Card Styling --- */
+.register-card {
+  background: #ffffff;
+  padding: 2.5rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 550px;
+  text-align: center;
+  color: black;
+}
+
+.register-card h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.5rem 0;
+}
+
+.register-card p {
+  font-size: 1rem;
+  color: #64748b;
+  margin-bottom: 2rem;
+}
+
+/* --- The Form Itself --- */
+.register-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  color: black;
+}
+
+.lable{
+  color: black;
+}
+.register-form label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: black;
+  margin-bottom: 0.5rem;
+}
+
+/* Add margin-top to all labels except the first one for spacing */
+.register-form label:not(:first-child) {
+  margin-top: 1.2rem;
+}
+
+/* --- Input and Select Fields --- */
+.register-form input,
+.register-form select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #334155;
+  background-color: #fff; /* Ensures select background is consistent */
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
+  -webkit-appearance: none; /* Removes default browser styling from select */
+  -moz-appearance: none;
+  appearance: none;
+  /* Add a custom dropdown arrow */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2364748B%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22/%3E%3C/svg%3E');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: .65em auto;
+}
+
+/* --- Focus State for Fields --- */
+.register-form input:focus,
+.register-form select:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+/* --- Submit Button --- */
+.register-form button[type="submit"] {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 2rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #4f46e5;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.register-form button[type="submit"]:hover:not(:disabled) {
+  background-color: #4338ca;
+  transform: translateY(-2px);
+}
+
+.register-form button[type="submit"]:disabled {
+  background-color: #a5b4fc;
+  cursor: not-allowed;
+}
+
+/* --- Error Message Styling --- */
+.error {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.4rem;
+  font-weight: 500;
+}
+
+/* --- "Already on JobSphere?" Link --- */
+.signin-text {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.signin-text a {
+  color: #4f46e5;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.signin-text a:hover {
+  text-decoration: underline;
+  color: #4338ca;
+}

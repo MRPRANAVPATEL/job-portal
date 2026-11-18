@@ -1,0 +1,141 @@
+/* --- Import a clean, modern font from Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+/* --- General Body & Page Styling --- */
+.jobs-page {
+  font-family: 'Poppins', sans-serif;
+  /* A beautiful gradient background that covers the whole page */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #333;
+  margin-top: 100px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Centers the form card vertically and adds padding --- */
+.jobs-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* --- The Glassmorphism Card --- */
+.jobs-card {
+  width: 100%;
+  max-width: 700px;
+  background: rgba(255, 255, 255, 0.15); /* Semi-transparent background */
+  backdrop-filter: blur(12px); /* The frosted glass effect */
+  -webkit-backdrop-filter: blur(12px); /* For Safari support */
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 40px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.jobs-card h2 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 2.2rem;
+  color: #fff;
+  margin-bottom: 30px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* --- Form & Groups --- */
+.jobs-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between form groups */
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #f0f0f0; /* Light color for readability on the dark background */
+}
+
+/* --- Styling for Input, Textarea, Select Fields --- */
+.jobs-form input[type="text"],
+.jobs-form input[type="number"],
+.jobs-form input[type="date"],
+.jobs-form textarea,
+.jobs-form select {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  transition: all 0.3s ease;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+.jobs-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* --- Focus State for Fields --- */
+.jobs-form input:focus,
+.jobs-form textarea:focus,
+.jobs-form select:focus {
+  outline: none;
+  border-color: #764ba2;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.3);
+}
+
+/* --- Special Layouts for Salary and Date (side-by-side) --- */
+.salary-group,
+.date-group {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.salary-group > div,
+.date-group > div {
+  flex: 1; /* Each child takes up equal space */
+}
+
+/* --- Submit Button --- */
+.jobs-form button[type="submit"] {
+  padding: 15px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #764ba2; /* A strong color from the gradient */
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.jobs-form button[type="submit"]:hover:not(:disabled) {
+  background-color: #61398d;
+  transform: translateY(-2px); /* Subtle lift effect */
+}
+
+.jobs-form button[type="submit"]:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* --- Error Message Styling --- */
+.error {
+  color: #ffdddd;
+  background-color: rgba(255, 0, 0, 0.2);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  margin-top: 6px;
+  font-weight: 500;
+}

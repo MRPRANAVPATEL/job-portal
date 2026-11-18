@@ -1,0 +1,15 @@
+.hiring{max-width:1180px;margin:auto;padding:48px 6%;font-family:Inter,Arial,sans-serif;color:#172f38;min-height:75vh}
+.hiring-heading,.hiring-totals,.hiring li{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.hiring-heading h1{font-size:clamp(32px,4vw,52px);margin:4px 0 20px}
+.hiring-heading p,.hiring section p{color:#506764}
+.hiring-totals{margin:22px 0 36px;align-items:stretch}
+.hiring-totals>div{flex:1;background:#edf6f1;padding:22px;border-radius:12px}
+.hiring strong,.hiring li a{display:block;overflow-wrap:anywhere}
+.hiring-totals strong{font-size:32px}
+.hiring section{margin-top:25px;border:1px solid #d8e4df;border-radius:12px;padding:22px}
+.hiring ul{padding:0;margin:0}.hiring li{padding:16px 0;border-top:1px solid #dee7e2}
+.hiring select{padding:8px}.hiring a{color:#165848}.hiring a.hero-action{color:white}
+@media(max-width:1200px){.hiring{padding-inline:5%}}
+@media(max-width:960px){.hiring li{flex-wrap:wrap}.hiring-totals{gap:12px}}
+@media(max-width:700px){.hiring{padding:28px 4%}.hiring-totals>div,.hiring section{padding:14px}}
+@media(max-width:480px){.hiring-heading,.hiring li{align-items:flex-start;flex-direction:column}.hiring-totals{flex-wrap:wrap}.hiring-totals>div{min-width:90px}}
