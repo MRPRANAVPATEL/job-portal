@@ -1,32 +1,72 @@
-# JobSphere · Job Portal
+# JobSphere
 
-A full-stack job portal built with React 18, JavaScript, Express and MySQL. Employers post openings and review applicants. Job seekers browse open roles, apply once per role and recover their accounts by email.
+**A full-stack job portal for candidates and hiring teams.** A candidate can browse open roles and submit an application. The employer can follow that same application from first review through interview, offer and hire.
 
-## Run the portal
+**React 18 · JavaScript · Node.js · Express · MySQL**
 
-1. Install Node.js 22 or 24 with npm. Start MySQL 8 or MariaDB on your computer.
-2. Clone this repository and open a terminal in the project folder.
-3. Copy `backend/.env.example` to `backend/.env`. Set `DB_USER` and `DB_PASSWORD` for your local database. Change the host or port if needed. Use an account allowed to create the `job_portal` database and its tables. Leave `SESSION_SECRET` blank on first setup to generate a private random value automatically.
-4. From the project root, run:
+[Hiring dashboard](#hiring-dashboard) · [Quick start](#quick-start) · [Try the hiring flow](#try-the-hiring-flow) · [Password reset email](#password-reset-email)
 
-   ```sh
-   npm run setup
-   npm start
-   ```
+![JobSphere homepage with links to browse open roles and register a company](docs/screenshots/homepage.webp)
 
-5. Open **http://localhost:5001**. Express serves both the React site and its API. On later visits, start your database and run `npm start`.
+## Hiring dashboard
 
-Setup runs `npm ci` in both folders using their lockfiles, initializes the database, and builds React. Rerunning setup preserves existing tables and records. For frontend development, keep the API running and use `npm start --prefix frontend` in a second terminal. Open http://localhost:3000. The React development server forwards API requests to port 5001. After editing React, run `npm run build` to refresh the site served on port 5001.
+Each company sees its own job postings, applicant contact details and hiring totals. Updating an application's status to **Hired** immediately updates the hired count. The screenshot shows fictional applicants and openings.
 
-## Try a complete hiring flow
+![Employer dashboard showing two openings, three applications and one hire](docs/screenshots/hiring-dashboard.webp)
 
-- Choose **For employers**, register a company and sign in. Open **Post a job** and choose a posting window that includes today.
-- Open a private browser window to keep a separate candidate session. Register a job seeker, sign in, browse jobs and apply.
-- Refresh the company dashboard. The application appears with the candidate's name, email, job and submission date. Change its status to **Hired** to update the hiring count. Each employer sees their own records. A new database starts empty.
+| Job seekers | Employers |
+| --- | --- |
+| Browse roles within their posting dates and see salary, location and requirements. | Publish jobs with a salary range, employment type and application window. |
+| Apply once per opening and see which roles they have already applied for. | Review candidate names, contact emails and the job each person applied for. |
+| Recover an account with a six-digit code sent by email. | Move applications through Applied, Screened, Interview, Offer, Hired or Rejected. |
+
+## Quick start
+
+**Prerequisites:** Node.js 22 or 24 with npm, Git, and a running MySQL 8 or MariaDB instance. On Windows with XAMPP, start **MySQL** in the XAMPP Control Panel. Express serves the website, so Apache is optional.
+
+**1. Clone the project.**
+
+```sh
+git clone https://github.com/MRPRANAVPATEL/job-portal.git
+cd job-portal
+```
+
+**2. Set up the database connection.** Copy `backend/.env.example` to `backend/.env`. On Windows PowerShell:
+
+```powershell
+Copy-Item backend/.env.example backend/.env
+```
+
+On macOS or Linux:
+
+```sh
+cp backend/.env.example backend/.env
+```
+
+Open the new file and set `DB_USER` and `DB_PASSWORD` to your local database credentials. The defaults use `127.0.0.1:3306` and a database named `job_portal`. The database account needs permission to create the database and its tables. Leave `SESSION_SECRET` blank on first setup so the setup script generates it.
+
+**3. Install dependencies and start the portal.** Run both commands from the repository root:
+
+```sh
+npm run setup
+npm start
+```
+
+Open **[localhost:5001](http://localhost:5001)**. Setup installs the frontend and backend dependencies with `npm ci`, creates missing tables and builds React. The lockfiles are included in Git. The installed `node_modules` folders and private `.env` file stay on your computer.
+
+**Next time:** Start your database, then run `npm start` from the project root.
+
+## Try the hiring flow
+
+1. Choose **For employers**, register a company, sign in and select **Post a job**. Set a posting window that includes today so candidates can see it.
+2. Open a private browser window for a separate candidate session. Register a job seeker, sign in, browse jobs and apply to the new opening.
+3. Return to the employer window and refresh the dashboard. Find the candidate, change their status to **Hired**, and check the updated count.
+
+A new database starts empty. Posting the first job gives you an opening to use throughout this walkthrough.
 
 ## Password reset email
 
-The job seeker sign-in page includes **Forgot password?**. The server sends a six-digit code through Nodemailer using SMTP. Gmail requires a sending mailbox and an app password for this configuration. Put these values only in **backend/.env**:
+The job seeker sign-in page includes **Forgot password?**. To enable delivery, configure Nodemailer with your SMTP provider in `backend/.env`. For Gmail, use a sending mailbox and its app password:
 
 ```dotenv
 SMTP_HOST=smtp.gmail.com
@@ -35,12 +75,17 @@ EMAIL_USER=your-sending-mailbox@example.com
 EMAIL_PASS=your-app-password
 ```
 
-Restart the API after editing the file. A different authenticated SMTP provider can supply its own host, port, sender and password. Reset codes expire after ten minutes and allow five attempts. A verified code issues a single-use reset token. The rest of the portal runs with the email fields blank.
+Restart the server after editing the file. Codes expire after ten minutes and allow five verification attempts. A verified code issues a single-use reset token. You can use the rest of the portal with the email fields blank.
 
-## Project folders
+## Development
 
-- `frontend/src` — React pages, forms, routing and dashboard.
-- `backend` — Express API, database-backed sessions and email delivery.
-- `backend/schema.sql` — tables for companies, users, jobs, applications and password recovery.
+| Task | Command from repository root |
+| --- | --- |
+| Start Express and serve the built React app | `npm start` |
+| Run React with live reload in a second terminal | `npm start --prefix frontend` |
+| Refresh the frontend served by Express | `npm run build` |
+| Run the frontend test once | `npm test --prefix frontend -- --watchAll=false` |
 
-Installed modules, private environment files and generated builds are excluded from Git.
+For live reload, open [localhost:3000](http://localhost:3000) and keep Express running on port 5001. The React development server forwards API requests to Express.
+
+The [React pages](frontend/src/pages) contain the candidate and employer interfaces. The [Express routes](backend/routes) handle authentication, job postings and application updates. The [database schema](backend/schema.sql) defines companies, users, jobs, applications and password recovery records.
