@@ -1,188 +1,130 @@
-// src/pages/Jobs.js
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import API_BASE_URL from "./setting";
 import "./jobs.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const Jobs = () => {
+const salary = new Intl.NumberFormat("en-IN", {
+  style: "currency",
+  currency: "INR",
+  maximumFractionDigits: 0,
+});
+const date = new Intl.DateTimeFormat("en-IN", { dateStyle: "medium" });
+
+export default function Jobs() {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [page, setPage] = useState(1);
-  const [limit] = useState(6);
-  const [hasMore, setHasMore] = useState(true);
-  const [appliedJobs, setAppliedJobs] = useState([]);
-  const [loggedIn, setLoggedIn] = useState(false);
-  const navigate = useNavigate();
+  const [hasMore, setHasMore] = useState(false);
+  const [isCandidate, setIsCandidate] = useState(false);
+  const [pendingJob, setPendingJob] = useState(null);
+  const [applicationError, setApplicationError] = useState("");
 
-  // ✅ Check login status once on mount
   useEffect(() => {
-    const checkLogin = async () => {
-      try {
-        const res = await axios.get(`${API_BASE_URL}/check-login`, {
-          withCredentials: true,
-        });
-        setLoggedIn(Boolean(res.data.user?.id));
-      } catch {
-        setLoggedIn(false);
-      }
-    };
-    checkLogin();
+    const controller = new AbortController();
+    const options = { signal: controller.signal };
+
+    axios.get(API_BASE_URL + "/check-login", options)
+      .then(({ data }) => setIsCandidate(Boolean(data.user?.id)))
+      .catch(() => {});
+
+    return () => controller.abort();
   }, []);
 
-  // ✅ Fetch jobs for the current page
-  const fetchJobs = useCallback(async (pageNumber = 1) => {
-    setLoading(true);
-    try {
-      const res = await axios.get(
-        `${API_BASE_URL}/jobs?page=${pageNumber}&limit=${limit}`
-      );
-      const jobData = res.data.jobs || [];
-      setJobs(jobData);
-      setHasMore(res.data.hasMore);
-      setAppliedJobs(jobData.filter(job => job.applied).map(job => job.job_id));
-    } catch (err) {
-      console.error("Error fetching jobs:", err);
-      setError("Failed to load jobs. Please try again later.");
-    } finally {
-      setLoading(false);
-    }
-  }, [limit]);
-
   useEffect(() => {
-    fetchJobs(page);
-  }, [page, fetchJobs]);
+    const controller = new AbortController();
+    setLoading(true);
+    setError("");
+    setApplicationError("");
 
-  const handlePageChange = (newPage) => {
-    if (newPage < 1) return;
-    if (!hasMore && newPage > page) return;
-    setPage(newPage);
-  };
+    axios.get(API_BASE_URL + "/jobs", {
+      params: { page, limit: 6 },
+      signal: controller.signal,
+    }).then(({ data }) => {
+      setJobs(data.jobs);
+      setHasMore(data.hasMore);
+    }).catch(() => {
+      if (!controller.signal.aborted) setError("Could not load jobs. Refresh the page to try again.");
+    }).finally(() => {
+      if (!controller.signal.aborted) setLoading(false);
+    });
 
-  // ✅ FIX: This function now correctly calls the backend API
-  const handleApply = async (jobId) => {
-    if (!loggedIn) {
-      alert("⚠️ You must log in first!");
-      navigate("/login");
-      return;
-    }
+    return () => controller.abort();
+  }, [page]);
 
+  async function apply(jobId) {
+    setPendingJob(jobId);
+    setApplicationError("");
     try {
-      // Send the request to the new backend endpoint
-      const response = await axios.post(
-        `${API_BASE_URL}/jobs/${jobId}/apply`,
-        {}, // No body data is needed, just the IDs from the URL and session
-        { withCredentials: true } // ESSENTIAL for sending the session cookie
-      );
-
-      // Update local UI to show "Applied"
-      setAppliedJobs((prev) => [...prev, jobId]);
-      alert(response.data.message || "✅ You have successfully applied!");
-
+      await axios.post(API_BASE_URL + "/jobs/" + jobId + "/apply", {});
+      setJobs(current => current.map(job => job.job_id === jobId ? { ...job, applied: true } : job));
     } catch (err) {
-      console.error("Application failed:", err);
-      // Show the specific error message from the backend (e.g., "Already applied")
-      alert(err.response?.data?.message || "Something went wrong. Please try again.");
+      setApplicationError(err.response?.data?.message || "Could not submit your application. Try again.");
+    } finally {
+      setPendingJob(null);
     }
-  };
-
-  if (loading)
-    return (
-      <p style={{ textAlign: "center", marginTop: "50px" }}>Loading jobs...</p>
-    );
-  if (error)
-    return (
-      <p style={{ textAlign: "center", marginTop: "50px", color: "red" }}>
-        {error}
-      </p>
-    );
+  }
 
   return (
     <>
       <Header />
-      <div className="jobs-page" >
-        <h2>Available Jobs</h2>
-        <div className="jobs-container">
-          <div className="jobs-list">
-            {jobs.length === 0 ? (
-              <p>No jobs available at the moment.</p>
-            ) : (
-              jobs.map((job) => (
-                <div key={job.job_id} className="job-card">
-                  <h3>{job.title}</h3>
-                  <p>
-                    <strong>Company:</strong> {job.company_name}
-                  </p>
-                  <p>
-                    <strong>Location:</strong> {job.location}
-                  </p>
-                  <p>
-                    <strong>Type:</strong> {job.job_type}
-                  </p>
-                  <p>
-                    <strong>Salary:</strong> ₹{job.salary_min} - ₹
-                    {job.salary_max}
-                  </p>
-                  <p>
-                    <strong>Posted:</strong>{" "}
-                    {new Date(job.posted_date).toLocaleDateString()}
-                  </p>
-                  <p>
-                    <strong>Expiry:</strong>{" "}
-                    {new Date(job.expiry_date).toLocaleDateString()}
-                  </p>
-                  <p>
-                    <strong>Description:</strong> {job.description}
-                  </p>
-                  <p>
-                    <strong>Requirements:</strong> {job.requirements}
-                  </p>
-
-                  {appliedJobs.includes(job.job_id) ? (
-                    <button disabled style={{ background: "#ccc" }}>
-                      Applied
-                    </button>
-                  ) : loggedIn ? (
-                    <button onClick={() => handleApply(job.job_id)}>
-                      Apply Now
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => navigate("/login")}
-                      style={{ background: "#eee", color: "#888" }}
-                    >
-                      Login to Apply
-                    </button>
-                  )}
-                </div>
-              ))
-            )}
-          </div>
+      <main className="browse-jobs">
+        <div className="browse-jobs__inner">
+          <h1>Available jobs</h1>
+          <p className="browse-jobs__intro">Explore open roles and apply directly to employers.</p>
+          {loading && <p role="status" className="browse-jobs__notice">Loading jobs…</p>}
+          {error && <p role="alert" className="browse-jobs__notice">{error}</p>}
+          {applicationError && <p role="alert" className="browse-jobs__notice">{applicationError}</p>}
+          {!loading && !error && (
+            <>
+              {jobs.length === 0 && <p className="browse-jobs__notice">No open jobs right now.</p>}
+              <div className="browse-jobs__list">
+                {jobs.map(job => (
+                  <article className="listing" key={job.job_id}>
+                    <div className="listing__header">
+                      <div>
+                        <h2>{job.title}</h2>
+                        <p>{job.company_name} · {job.location}</p>
+                      </div>
+                      <span className="listing__type">{job.job_type}</span>
+                    </div>
+                    <div className="listing__details">
+                      <div><h3>Description</h3><p>{job.description}</p></div>
+                      <div><h3>Requirements</h3><p>{job.requirements}</p></div>
+                    </div>
+                    <div className="listing__footer">
+                      <div>
+                        <strong>{salary.format(job.salary_min)} – {salary.format(job.salary_max)}</strong>
+                        <p>Posted {date.format(new Date(job.posted_date))} · Closes {date.format(new Date(job.expiry_date))}</p>
+                      </div>
+                      {job.applied ? (
+                        <button className="hero-action" disabled>Applied</button>
+                      ) : isCandidate ? (
+                        <button className="hero-action" disabled={pendingJob !== null} onClick={() => apply(job.job_id)}>
+                          {pendingJob === job.job_id ? "Applying…" : "Apply now"}
+                        </button>
+                      ) : (
+                        <Link to="/login" className="hero-action">Sign in to apply</Link>
+                      )}
+                    </div>
+                  </article>
+                ))}
+              </div>
+              {(page > 1 || hasMore) && (
+                <nav aria-label="Job pages" className="browse-jobs__pagination">
+                  <button className="hero-action" disabled={page === 1 || pendingJob !== null} onClick={() => setPage(page - 1)}>Previous</button>
+                  <span>Page {page}</span>
+                  <button className="hero-action" disabled={!hasMore || pendingJob !== null} onClick={() => setPage(page + 1)}>Next</button>
+                </nav>
+              )}
+            </>
+          )}
         </div>
-
-        {/* ✅ Pagination */}
-        <div className="pagination">
-          <button
-            onClick={() => handlePageChange(page - 1)}
-            disabled={page === 1}
-          >
-            Prev
-          </button>
-          <span>Page {page}</span>
-          <button
-            onClick={() => handlePageChange(page + 1)}
-            disabled={!hasMore}
-          >
-            Next
-          </button>
-        </div>
-      </div>
+      </main>
       <Footer />
     </>
   );
-};
-
-export default Jobs;
+}

@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom"; // ✅ 1. Import useNavigate
 import API_BASE_URL from "./setting";
-import "./Register.css";
+import "./portal-forms.css";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
@@ -65,7 +65,6 @@ const Register = () => {
     <>
       <Header />
       <div className="register-page">
-        <img src="/img/logo.webp" alt="logo" className="register-logo" />
 
         <div className="register-card">
           <h2>Join JobSphere</h2>
@@ -78,28 +77,28 @@ const Register = () => {
           >
             {({ isSubmitting }) => (
               <Form className="register-form">
-                <label>Full Name</label>
-                <Field name="full_name" type="text" />
+                <label htmlFor="full_name">Full Name</label>
+                <Field id="full_name" name="full_name" type="text" />
                 <ErrorMessage
                   name="full_name"
                   component="div"
                   className="error"
                 />
 
-                <label>Email</label>
-                <Field name="email" type="email" />
+                <label htmlFor="email">Email</label>
+                <Field id="email" name="email" type="email" />
                 <ErrorMessage name="email" component="div" className="error" />
 
-                <label>Password</label>
-                <Field name="password" type="password" />
+                <label htmlFor="password">Password</label>
+                <Field id="password" name="password" type="password" />
                 <ErrorMessage
                   name="password"
                   component="div"
                   className="error"
                 />
 
-                <label>Phone Number</label>
-                <Field name="phone" type="text" />
+                <label htmlFor="phone">Phone Number</label>
+                <Field id="phone" name="phone" type="text" />
                 <ErrorMessage name="phone" component="div" className="error" />
 
                 <button type="submit" disabled={isSubmitting}>

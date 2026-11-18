@@ -1,107 +1,113 @@
-/* src/pages/jobs.css */
-
-/* --- General Page Styling --- */
-.jobs-page {
-  /* Set the background to white as requested */
-  background-color: #ffffff;
-  /* Add padding for spacing from the page edges */
-  padding: 20px 40px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  min-height: 80vh; /* Ensures the page takes up most of the viewport height */
+.browse-jobs {
+  flex: 1;
+  background: #f4f7f4;
+  color: #19312d;
 }
 
-.jobs-page h2 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 30px;
-  font-size: 2.5rem;
+.browse-jobs__inner {
+  width: min(1080px, calc(100% - 2 * clamp(16px, 5vw, 64px)));
+  margin-inline: auto;
+  padding-block: clamp(32px, 6vw, 72px);
 }
 
-/* --- Job List Grid Container --- */
-.jobs-list {
-  /* ✅ Establishes the 3-column grid layout */
+.browse-jobs h1 {
+  margin: 0;
+  font-size: clamp(38px, 6vw, 64px);
+  letter-spacing: -.045em;
+  line-height: 1.06;
+}
+
+.browse-jobs__intro {
+  margin: 12px 0 30px;
+  color: #48615a;
+}
+
+.browse-jobs__list {
+  display: grid;
+  gap: 16px;
+}
+
+.listing {
+  min-width: 0;
+  display: grid;
+  gap: 20px;
+  padding: clamp(18px, 4vw, 32px);
+  border: 1px solid #d6e4dc;
+  border-radius: 16px;
+  background: #fff;
+  overflow-wrap: anywhere;
+}
+
+.listing__header, .listing__footer, .browse-jobs__pagination {
   display: flex;
   flex-wrap: wrap;
-
-  gap: 25px; /* Spacing between the job cards */
-}
-
-/* --- Individual Job Card Styling --- */
-.job-card {
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px; /* Softer, rounded corners */
-  padding: 20px;
-  /* Subtle shadow to make cards "pop" */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Add a hover effect for interactivity */
-.job-card:hover {
-  transform: translateY(-5px); /* Lifts the card slightly */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-.job-card h3 {
-  margin-top: 0;
-  font-size: 1.4rem;
-  color: #0056b3; /* A nice blue for the job title */
-}
-
-.job-card p {
-  margin: 5px 0;
-  color: #555;
-  line-height: 1.6;
-  flex-grow: 1; /* Helps align content if cards have different heights */
-}
-
-.job-card p strong {
-  color: #333; /* Make the label text slightly darker */
-}
-
-/* --- Pagination Controls --- */
-.pagination {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  margin-top: 40px;
-  padding: 10px;
+  justify-content: space-between;
+  gap: 12px 24px;
 }
 
-.pagination button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.2s;
+.listing h2, .listing h3, .listing p {
+  margin: 0;
 }
 
-.pagination button:hover {
-  background-color: #0056b3;
+.listing h2 {
+  font-size: clamp(22px, 4vw, 30px);
+  letter-spacing: -.025em;
 }
 
-/* Style for the disabled state of buttons */
-.pagination button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
+.listing__header p, .listing__footer p {
+  margin-top: 4px;
+  color: #48615a;
 }
 
-.pagination span {
-  margin: 0 15px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #555;
+.listing__type {
+  border-radius: 999px;
+  background: #e8f3e9;
+  padding: 6px 12px;
+  color: #205a47;
+  font-weight: 600;
 }
 
+.listing__details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 28px;
+  color: #344e46;
+}
 
-.job-card {box-sizing:border-box; flex:0 1 calc((100% - 50px)/3);min-width:0;overflow-wrap:anywhere}
-@media(max-width:1200px){.jobs-page{padding-inline:28px}}
-@media(max-width:1024px){.job-card{flex-basis:calc((100% - 25px)/2)}}
-@media(max-width:768px){.job-card{flex-basis:100%}.jobs-page{padding:20px}}
-@media(max-width:480px){.jobs-page{padding:14px}.job-card{padding:16px}}
+.listing__details h3 {
+  margin-bottom: 5px;
+  font-size: .94rem;
+  color: #19312d;
+}
+
+.listing__details p {
+  white-space: pre-wrap;
+}
+
+.listing__footer {
+  border-top: 1px solid #e1e9e4;
+  padding-top: 16px;
+}
+
+.browse-jobs__pagination {
+  justify-content: center;
+  margin-top: 22px;
+}
+
+.browse-jobs__pagination button {
+  background: white;
+  color: #165848;
+  border: 1px solid #b6ccc1;
+}
+
+.browse-jobs__notice {
+  padding: 24px;
+  background: white;
+  border: 1px solid #d6e4dc;
+  border-radius: 12px;
+}
+
+@media (max-width: 540px) {
+  .listing__details { grid-template-columns: 1fr; }
+}

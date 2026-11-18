@@ -1,0 +1,81 @@
+.form-page, .login-wrapper, .company-login-wrapper, .register-page,
+.company-register-page, .forgot-container-wrapper {
+  display: grid;
+  place-items: start center;
+  flex: 1;
+  padding: clamp(24px, 6vw, 64px) 16px;
+  background: #f4f7f4;
+  color: #19312d;
+}
+
+.form-card, .login-card, .company-login-card, .register-card,
+.company-register-card, .forgot-container {
+  width: min(100%, 480px);
+  padding: clamp(20px, 5vw, 36px);
+  border: 1px solid #d6e4dc;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 8px 26px #19312d0a;
+}
+
+.form-card--wide, .company-register-card { width: min(100%, 660px); }
+
+:is(.form-card, .login-card, .company-login-card, .register-card,
+.company-register-card, .forgot-container) h2 {
+  margin: 0 0 18px;
+  font-size: clamp(26px, 5vw, 36px);
+  letter-spacing: -.035em;
+}
+
+:is(.form-card, .login-card, .company-login-card, .register-card,
+.company-register-card, .forgot-container) form {
+  display: grid;
+  gap: 8px;
+}
+
+:is(.form-card, .login-card, .company-login-card, .register-card,
+.company-register-card, .forgot-container) label {
+  display: block;
+  margin-block: 8px 4px;
+  font-weight: 600;
+}
+
+:is(.form-card, .login-card, .company-login-card, .register-card,
+.company-register-card, .forgot-container) :is(input, textarea, select) {
+  width: 100%;
+  min-width: 0;
+  padding: 11px 12px;
+  color: #19312d;
+  background: #fff;
+  font: inherit;
+  border: 1px solid #aebfb7;
+  border-radius: 8px;
+}
+
+.form-card textarea, .company-register-card textarea { resize: vertical; }
+
+:is(.form-card, .login-card, .company-login-card, .register-card,
+.company-register-card, .forgot-container) button[type="submit"] {
+  margin-top: 12px;
+  padding: 12px 18px;
+  color: white;
+  background: #165848;
+  border: 0;
+  border-radius: 8px;
+  font-weight: 650;
+}
+
+:is(.form-card, .login-card, .company-login-card, .register-card,
+.company-register-card, .forgot-container) a { color: #165848; }
+
+.salary-group, .date-group {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.error, .login-message, .company-login-message { color: #9d2b29; }
+
+@media (max-width: 480px) {
+  .salary-group, .date-group { grid-template-columns: 1fr; gap: 4px; }
+}

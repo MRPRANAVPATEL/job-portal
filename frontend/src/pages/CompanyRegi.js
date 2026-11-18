@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import API_BASE_URL from "./setting";
-import "./CompanyRegi.css";
+import "./portal-forms.css";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
@@ -64,11 +64,6 @@ const CompanyRegi = () => {
         <>
             <Header />
             <div className="company-register-page">
-                <img
-                    src="/img/logo.webp"
-                    alt="logo"
-                    className="company-register-logo"
-                />
                 <div className="company-register-card">
                     <h2>Register Your Company</h2>
                     <p>Grow with JobSphere</p>
@@ -80,36 +75,36 @@ const CompanyRegi = () => {
                     >
                         {({ isSubmitting }) => (
                             <Form className="company-register-form">
-                                <label>Company Name</label>
-                                <Field name="name" type="text" />
+                                <label htmlFor="name">Company Name</label>
+                                <Field id="name" name="name" type="text" />
                                 <ErrorMessage name="name" component="div" className="error" />
 
-                                <label>Industry</label>
-                                <Field name="industry" type="text" />
+                                <label htmlFor="industry">Industry</label>
+                                <Field id="industry" name="industry" type="text" />
                                 <ErrorMessage name="industry" component="div" className="error" />
 
-                                <label>Company Size</label>
-                                <Field name="size" type="text" />
+                                <label htmlFor="size">Company Size</label>
+                                <Field id="size" name="size" type="text" />
                                 <ErrorMessage name="size" component="div" className="error" />
 
-                                <label>Website</label>
-                                <Field name="website" type="url" />
+                                <label htmlFor="website">Website</label>
+                                <Field id="website" name="website" type="url" />
                                 <ErrorMessage name="website" component="div" className="error" />
 
-                                <label>Description</label>
-                                <Field as="textarea" name="description" />
+                                <label htmlFor="description">Description</label>
+                                <Field id="description" as="textarea" name="description" />
                                 <ErrorMessage name="description" component="div" className="error" />
 
-                                <label>Location</label>
-                                <Field name="location" type="text" />
+                                <label htmlFor="location">Location</label>
+                                <Field id="location" name="location" type="text" />
                                 <ErrorMessage name="location" component="div" className="error" />
 
-                                <label>Email</label>
-                                <Field name="email" type="email" />
+                                <label htmlFor="email">Email</label>
+                                <Field id="email" name="email" type="email" />
                                 <ErrorMessage name="email" component="div" className="error" />
 
-                                <label>Password</label>
-                                <Field name="password" type="password" />
+                                <label htmlFor="password">Password</label>
+                                <Field id="password" name="password" type="password" />
                                 <ErrorMessage name="password" component="div" className="error" />
 
                                 <button type="submit" disabled={isSubmitting}>
@@ -130,4 +125,3 @@ const CompanyRegi = () => {
 };
 
 export default CompanyRegi;
-

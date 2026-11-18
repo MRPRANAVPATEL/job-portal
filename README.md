@@ -82,10 +82,10 @@ Restart the server after editing the file. Codes expire after ten minutes and al
 | Task | Command from repository root |
 | --- | --- |
 | Start Express and serve the built React app | `npm start` |
-| Run React with live reload in a second terminal | `npm start --prefix frontend` |
+| Run React with live reload in a second terminal | `npm run start:frontend` |
 | Refresh the frontend served by Express | `npm run build` |
 | Run the frontend test once | `npm test --prefix frontend -- --watchAll=false` |
 
-For live reload, open [localhost:3000](http://localhost:3000) and keep Express running on port 5001. The React development server forwards API requests to Express.
+For live reload, open [localhost:3000](http://localhost:3000) and keep Express running on port 5001. The React development server proxies API requests and session cookies to Express. It leaves browser selection to you.
 
 The [React pages](frontend/src/pages) contain the candidate and employer interfaces. The [Express routes](backend/routes) handle authentication, job postings and application updates. The [database schema](backend/schema.sql) defines companies, users, jobs, applications and password recovery records.

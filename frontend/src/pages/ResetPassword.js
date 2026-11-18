@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 // ✅ 1. Import the existing CSS file
-import "./forgotpassword.css";
+import "./portal-forms.css";
 
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState("");

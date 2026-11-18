@@ -86,6 +86,6 @@ app.use('/api', (req, res) => res.status(404).json({message: 'API route not foun
 const build = path.join(__dirname, '../frontend/build');
 app.use(express.static(build));
 app.get('/{*page}', (req, res) => res.sendFile(path.join(build, 'index.html')));
-app.listen(PORT, () => {
+app.listen(PORT, '127.0.0.1', () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });

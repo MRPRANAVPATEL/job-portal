@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+*, *::before, *::after { box-sizing: border-box; }
+#root { min-height: 100vh; display: flex; flex-direction: column; }
+button, select { font: inherit; }
+button:not(:disabled) { cursor: pointer; }
+button:disabled { opacity: .65; }
+:focus-visible { outline: 3px solid #277c69; outline-offset: 3px; }

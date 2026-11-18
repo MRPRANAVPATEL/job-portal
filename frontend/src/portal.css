@@ -15,3 +15,8 @@
 @media(max-width:960px){.portal-hero img{width:38%}.portal-nav{padding-inline:4%}}
 @media(max-width:700px){.portal-hero{flex-direction:column;align-items:flex-start}.portal-hero img{align-self:center;width:64%}.portal-nav nav{gap:12px}}
 @media(max-width:480px){.portal-nav,.portal-foot{align-items:flex-start;flex-direction:column;gap:10px}.portal-hero{padding:34px 6%}.portal-nav nav{font-size:14px}}
+
+.hero-action { border: 0; font: inherit; font-weight: 650; }
+.hero-action:hover:not(:disabled) { filter: brightness(.91); }
+.hero-action:disabled { background: #e2efe8; color: #23483c; opacity: 1; }
+.browse-jobs__pagination button:disabled { background: #edf2ef; color: #566b62; }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import API_BASE_URL from "./setting";
-import "./CompanyLogin.css";
+import "./portal-forms.css";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
@@ -64,7 +64,6 @@ import Header from "../components/Header";
     <>
       <Header />
       <div className="company-login-wrapper">
-        <img src="/img/logo.webp" alt="logo" className="company-login-logo" />
         <div className="company-login-card">
           <h2>Company Login</h2>
           {message && <p className="company-login-message">{message}</p>}

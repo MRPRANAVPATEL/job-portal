@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import API_BASE_URL from "./setting";
-import "./Login.css";
+import "./portal-forms.css";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
@@ -93,7 +93,6 @@ const Login = () => {
     <>
     <Header/>
     <div className="login-wrapper">
-      <img src="/img/logo.webp" alt="logo" className="login-logo" />
       <div className="login-card">
         <h2>JobSphere Login</h2>
         {message && <p className="login-message">{message}</p>}

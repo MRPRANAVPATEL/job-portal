@@ -6,7 +6,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import API_BASE_URL from "./setting";
-import "./JobsRegister.css";
+import "./portal-forms.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -58,10 +58,10 @@ const JobsRegister = () => {
   return (
     <>
     <Header />
-    <br></br>
-    <div className="jobs-page">
-      <div className="jobs-container">
-        <div className="jobs-card">
+
+    <main className="form-page">
+
+        <div className="form-card form-card--wide">
           <h2>Post a Job</h2>
           <Formik
             initialValues={initialValues}
@@ -73,45 +73,45 @@ const JobsRegister = () => {
 
 
                 <div className="form-group">
-                  <label>Job Title</label>
-                  <Field name="title" type="text" placeholder="Enter job title" />
+                  <label htmlFor="title">Job Title</label>
+                  <Field id="title" name="title" type="text" placeholder="Enter job title" />
                   <ErrorMessage name="title" component="div" className="error" />
                 </div>
 
                 <div className="form-group">
-                  <label>Description</label>
-                  <Field name="description" as="textarea" rows="4" placeholder="Job description..." />
+                  <label htmlFor="description">Description</label>
+                  <Field id="description" name="description" as="textarea" rows="4" placeholder="Job description..." />
                   <ErrorMessage name="description" component="div" className="error" />
                 </div>
 
                 <div className="form-group">
-                  <label>Requirements</label>
-                  <Field name="requirements" as="textarea" rows="4" placeholder="Job requirements..." />
+                  <label htmlFor="requirements">Requirements</label>
+                  <Field id="requirements" name="requirements" as="textarea" rows="4" placeholder="Job requirements..." />
                   <ErrorMessage name="requirements" component="div" className="error" />
                 </div>
 
                 <div className="form-group">
-                  <label>Location</label>
-                  <Field name="location" type="text" placeholder="Job location" />
+                  <label htmlFor="location">Location</label>
+                  <Field id="location" name="location" type="text" placeholder="Job location" />
                   <ErrorMessage name="location" component="div" className="error" />
                 </div>
 
                 <div className="form-group salary-group">
                   <div>
-                    <label>Salary Min</label>
-                    <Field name="salary_min" type="number" placeholder="₹0" />
+                    <label htmlFor="salary_min">Salary Min</label>
+                    <Field id="salary_min" name="salary_min" type="number" placeholder="₹0" />
                     <ErrorMessage name="salary_min" component="div" className="error" />
                   </div>
                   <div>
-                    <label>Salary Max</label>
-                    <Field name="salary_max" type="number" placeholder="₹0" />
+                    <label htmlFor="salary_max">Salary Max</label>
+                    <Field id="salary_max" name="salary_max" type="number" placeholder="₹0" />
                     <ErrorMessage name="salary_max" component="div" className="error" />
                   </div>
                 </div>
 
                 <div className="form-group">
-                  <label>Job Type</label>
-                  <Field as="select" name="job_type">
+                  <label htmlFor="job_type">Job Type</label>
+                  <Field id="job_type" as="select" name="job_type">
                     <option value="">Select Job Type</option>
                     <option value="Full-time">Full-time</option>
                     <option value="Part-time">Part-time</option>
@@ -123,13 +123,13 @@ const JobsRegister = () => {
 
                 <div className="form-group date-group">
                   <div>
-                    <label>Posted Date</label>
-                    <Field name="posted_date" type="date" />
+                    <label htmlFor="posted_date">Posted Date</label>
+                    <Field id="posted_date" name="posted_date" type="date" />
                     <ErrorMessage name="posted_date" component="div" className="error" />
                   </div>
                   <div>
-                    <label>Expiry Date</label>
-                    <Field name="expiry_date" type="date" />
+                    <label htmlFor="expiry_date">Expiry Date</label>
+                    <Field id="expiry_date" name="expiry_date" type="date" />
                     <ErrorMessage name="expiry_date" component="div" className="error" />
                   </div>
                 </div>
@@ -141,8 +141,7 @@ const JobsRegister = () => {
             )}
           </Formik>
         </div>
-      </div>
-    </div>
+    </main>
     <Footer />
     </>
   );
